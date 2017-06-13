@@ -1,0 +1,40 @@
+version: '3.0'
+services:
+  onezone.canfar.net:
+    image: onedata/onezone:3.0.0-rc15
+    hostname: onezone.canfar.net
+    # dns: 8.8.8.8 # uncomment if container can't ping any domain
+    #container_name: onezone-1
+    networks:
+      - 'goose'
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      # configuration persistance
+      # - "${ONEZONE_CONFIG_DIR}:/volumes/persistence"
+      # OpenId configuration
+      #- "${AUTH_PATH}:/var/lib/oz_worker/auth.config"
+      # DNS configuration
+      #- "${DNS_PATH}:/var/lib/oz_worker/dns.config"
+      # Onepanel
+      #- "${OZ_PRIV_KEY_PATH}:/etc/oz_panel/certs/key.pem"
+      #- "${OZ_CERT_PATH}:/etc/oz_panel/certs/cert.pem"
+      #- "${OZ_CACERT_PATH}:/etc/oz_panel/cacerts/cacert.pem"
+      #- "${OZ_CACERT_PATH}:/etc/oz_worker/cacerts/cacert.pem"
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "443:443"
+      - "80:80"
+      - "5555:5555"
+      - "5556:5556"
+      - "6665:6665"
+      - "6666:6666"
+      - "7443:7443"
+      - "8443:8443"
+      - "8876:8876"
+      - "8877:8877"
+      - "9443:9443"
+
+networks:
+  goose:
+

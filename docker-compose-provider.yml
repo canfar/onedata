@@ -1,0 +1,37 @@
+version: '3.0'
+services:
+  oneprovider.canfar.net:
+    image: onedata/oneprovider:3.0.0-rc15
+    hostname: oneprovider.canfar.net
+    # dns: 8.8.8.8 # uncomment if container can't ping any domain
+    #container_name: oneprovider-1
+    networks:
+      - 'goose'
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+        # configuration persistence
+        # - "${ONEPROVIDER_CONFIG_DIR}:/volumes/persistence"
+        # data persistence
+        # - "${ONEPROVIDER_DATA_DIR}:/volumes/storage"
+        # Oneprovider
+        #- "${OP_PRIV_KEY_PATH}:/etc/op_panel/certs/key.pem"
+        #- "${OP_CERT_PATH}:/etc/op_panel/certs/cert.pem"
+        #- "${OP_CACERT_PATH}:/etc/op_panel/cacerts/cacert.pem"
+        #- "${OP_CACERT_PATH}:/etc/op_worker/cacerts/cacert.pem"
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "443:443"
+      - "80:80"
+      - "5555:5555"
+      - "5556:5556"
+      - "6665:6665"
+      - "6666:6666"
+      - "7443:7443"
+      - "8443:8443"
+      - "8876:8876"
+      - "8877:8877"
+      - "9443:9443"
+
+networks:
+  goose:
